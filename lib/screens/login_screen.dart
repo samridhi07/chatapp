@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:chatapp/screens/chat_screen.dart';
 import 'registration_screen.dart';
 import 'login_screen.dart';
-import 'package:lottie/lottie.dart';
+
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -42,6 +42,8 @@ class _widState extends State<wid> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            Hero(tag: 'logiin', child: Image.asset('images/login.gif'),
+            ),
             Expanded(
               child: Container(
                 child: null,

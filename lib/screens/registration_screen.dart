@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:chatapp/main.dart';
 import 'chat_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String id ='registration_id';
-
-
 
   @override
   State<RegistrationScreen> createState() => _RegistrationScreenState();
@@ -49,7 +45,7 @@ class register extends StatefulWidget {
 }
 
 class _registerState extends State<register> {
-  // final _auth = FirebaseAuth.instance;
+   final _auth = FirebaseAuth.instance;
   late String email;
   late String password;
 
@@ -137,23 +133,23 @@ class _registerState extends State<register> {
                   elevation: 5.0,
                   child: MaterialButton(
                     onPressed: ()async {
-                      Navigator.pushNamed(context, ChatScreen.id);
-                      //  print(email);
-                      // print(password);
-                      // try{
-                      //   final newUser = await _auth.createUserWithEmailAndPassword(email: email, password: password);
-                      //
-                      // if(newUser != null){
-                      //   Navigator.pushNamed(context, ChatScreen.id);
-                      // }
-                      // }
-                      // catch(e){
-                      //   print(e);
-                      // }
+
+                      try {
+                        final newUser = _auth.createUserWithEmailAndPassword(
+                            email: email, password: password);
+                        print(newUser);
+                        if(newUser!=null) {
+                          Navigator.pushNamed(context, ChatScreen.id);
+                        }
+                      }
+                      catch(e){
+                        print(e);
+                      }
                     },
                     minWidth: 200.0,
                     height: 42.0,
-                    child: Text(
+                    child:
+                    Text(
                       'Register',
                       style: TextStyle(color: Colors.white),
                     ),
