@@ -1,3 +1,4 @@
+import 'package:chatapp/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'chat_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,7 +23,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             IconButton(
                 icon: Icon(Icons.close),
                 onPressed: () {
-                  //Implement logout functionality
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> WelcomeScreen()));
                 }),
           ],
           title: Text('Registration',
@@ -39,13 +40,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 }
 class register extends StatefulWidget {
 
-
   @override
   State<register> createState() => _registerState();
 }
 
 class _registerState extends State<register> {
    final _auth = FirebaseAuth.instance;
+
   late String email;
   late String password;
 
@@ -89,7 +90,8 @@ class _registerState extends State<register> {
 
                         },
                         decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
+                          border: OutlineInputBorder(
+                          ),
                           labelText: 'E-mail ',
 
                         ),
@@ -120,13 +122,13 @@ class _registerState extends State<register> {
               ),
 
               ////////////////////////text field 1
-
-              SizedBox(
-                height: 8.0,
-              ),
+              //
+              // SizedBox(
+              //   height: 8.0,
+              // ),
               ////////////////////////////////text field 2
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
+                padding: EdgeInsets.symmetric(vertical: 10.0),
                 child: Material(
                   color: Colors.lightGreen,
                   borderRadius: BorderRadius.all(Radius.circular(30.0)),
@@ -146,7 +148,7 @@ class _registerState extends State<register> {
                         print(e);
                       }
                     },
-                    minWidth: 200.0,
+                    minWidth: 100.0,
                     height: 42.0,
                     child:
                     Text(

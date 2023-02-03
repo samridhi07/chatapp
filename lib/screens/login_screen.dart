@@ -1,8 +1,8 @@
+import 'package:chatapp/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:chatapp/screens/chat_screen.dart';
 import 'registration_screen.dart';
-import 'login_screen.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -12,10 +12,18 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      appBar: AppBar(
+        leading:IconButton(
+        onPressed: (){
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> WelcomeScreen()));
+        },
+          icon: Icon(Icons.arrow_back),
+      ),),
+      backgroundColor: Colors.black,
       body: wid()
 
     );
@@ -30,10 +38,16 @@ class wid extends StatefulWidget {
 }
 //for the  widget and the login page
 class _widState extends State<wid> {
+
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final _auth = FirebaseAuth.instance;
+    String? email;
+    String? password;
+    bool showSpinner = true;
     return Padding(
 
       padding: const EdgeInsets.all(2),
@@ -42,29 +56,41 @@ class _widState extends State<wid> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Hero(tag: 'logiin', child: Image.asset('images/login.gif'),
-            ),
             Expanded(
               child: Container(
-                child: null,
+                  child: Hero(tag: 'login',
+                    child: SizedBox(
+                      child: Image.asset('images/login.gif'),
+                      height: 500,
+                    ),)
               ),
             ),
-               Container(
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.all(10),
-                  child: const Text(
-                    'Sign in',
-                    style: TextStyle(fontSize: 20,
-                    color: Colors.black,
-                    ),
-                  )),
+            Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(10),
+                child: const Text(
+                  'Sign in',
+                  style: TextStyle(fontSize: 20,
+                    color: Colors.white,
+                    fontFamily: 'Unbounded',
+                  ),
+                )),
 
             Container(
               padding: const EdgeInsets.all(30),
               child: TextField(
+                keyboardType: TextInputType.emailAddress,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  email = value;
+                },
                 controller: nameController,
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 10.0,
+                      )
+                  ),
                   labelText: 'User Name',
                   hintText: 'Enter your username',
                 ),
@@ -73,6 +99,11 @@ class _widState extends State<wid> {
             Container(
               padding: EdgeInsets.all(30.0),
               child: TextField(
+                keyboardType: TextInputType.emailAddress,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  password = value;
+                },
                 obscureText: true,
                 controller: passwordController,
                 decoration: const InputDecoration(
@@ -86,11 +117,11 @@ class _widState extends State<wid> {
               onPressed: () {
                 //forgot password screen
               },
-              child:  Text(
+              child: Text(
                 'Forgot Password?',
                 style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold
                 )
                 ,
               ),
@@ -99,16 +130,25 @@ class _widState extends State<wid> {
               height: 50,
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: ElevatedButton(
-                child: Text('Login',
-                  // style: TextStyle(
-                  //     color: Colors.green.shade400),
-                ),
-                onPressed: () {
-                  // print(nameController.text);
-                  // print(passwordController.text);
+                  child: Text('Login',
+                    // style: TextStyle(
+                    //     color: Colors.green.shade400),
+                  ),
+                  onPressed: () async {
+                    try {
+                      final user = await _auth.signInWithEmailAndPassword(
+                          email: email!, password: password!);
+                      if (user != null) {
+                        Navigator.pushNamed(context, ChatScreen.id);
+                      }
 
-                  Navigator.pushNamed(context, ChatScreen.id);
-                },
+                      setState(() {
+                        showSpinner = false;
+                      });
+                    } catch (e) {
+                      print(e);
+                    };
+                  }
               ),
             ),
             Row(
@@ -117,12 +157,12 @@ class _widState extends State<wid> {
                 const Text('Does not have account?'),
                 TextButton(
                   child: const Text(
-                    'Register ',
+                    'Sign Up ',
                     style: TextStyle(fontSize: 20),
                   ),
                   onPressed: () {
-
-                    //signup screen
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => RegistrationScreen()));
                   },
                 )
               ],

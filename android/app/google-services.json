@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "929855939947",
+    "project_id": "climachat-46f49",
+    "storage_bucket": "climachat-46f49.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929855939947:android:78514e4bfccd87084a982e",
+        "android_client_info": {
+          "package_name": "com.example.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "929855939947-ca950ue4tsss1ph4lg57nk3ks53apnlh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANobZGjQ315tsJu7JRDLhYVqdxxhWXsG4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "929855939947-ca950ue4tsss1ph4lg57nk3ks53apnlh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

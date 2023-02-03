@@ -1,13 +1,15 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'package:chatapp/screens/login_screen.dart';
+import 'package:chatapp/screens/texting_screen.dart';
 import 'package:flutter/material.dart';
-import 'login_screen.dart';
 import 'package:chatapp/screens/clima/screens/loading_screen.dart';
+
 class ChatScreen extends StatefulWidget {
   static const String id = 'chat_screen';
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
 }
+
 
 class _ChatScreenState extends State<ChatScreen> {
 
@@ -21,11 +23,10 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
               icon: Icon(Icons.close),
               onPressed: () {
-
-                //Implement logout functionality
-              }),
+               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
+              },),
         ],
-        title: Text('ChatApp',
+        title: Text('Check the weather',
           style: TextStyle(
             color: Colors.white,
           ),),
@@ -52,28 +53,19 @@ class _ChatScreenState extends State<ChatScreen> {
                     TextField(
                       textAlign: TextAlign.center,
                       cursorColor: Colors.black54,
-
                       onChanged: (value){
 
-//here will be the route from text to app
                       },
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Enter Location  ',
-
                       ),
                     ),
-
-                    //////////////////////
-
                   ],
                 ),
               ),
             ),
 
-            ////////////////////////text field 1
-
-            ////////////////////////////////text field 2
             Padding(
               padding: EdgeInsets.symmetric(vertical: 6.0),
               child: Material(
@@ -89,7 +81,8 @@ class _ChatScreenState extends State<ChatScreen> {
 
                   child: Text(
                     'Current Location Weather ',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white
+                    ),
                   ),
                 ),
               ),
@@ -126,30 +119,22 @@ class _ChatScreenState extends State<ChatScreen> {
 
       bottomNavigationBar:
       Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
 
           IconButton(
             icon: Icon(Icons.message),
+            iconSize: 40,
             onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TextingScreen()),
+              );
               setState(() {
-
               });
 
             },
           ),
-          IconButton(
-            icon: Icon(Icons.group_work),
-            onPressed: () {
-              //write your script
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.account_box),
-            onPressed: () {
-              //write your script
-            },
-          )
         ], // This trailing comma makes auto-formatting nicer for build methods.
       ),
     );
