@@ -16,7 +16,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white24,
+      backgroundColor: Colors.black,
       appBar: AppBar(
         leading: null,
         actions: <Widget>[
@@ -30,7 +30,7 @@ class _ChatScreenState extends State<ChatScreen> {
         //   style: TextStyle(
         //     color: Colors.white,
         //   ),),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.black,
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -42,54 +42,8 @@ class _ChatScreenState extends State<ChatScreen> {
               padding: EdgeInsets.all(50.0),
               child: Image.asset('images/weather.gif'),
             ),
-            Container(
-              child: Expanded(
-                child: Column(
-                  children: <Widget>[
-
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    ////////////
-                    TextField(
-                      textAlign: TextAlign.center,
-                      cursorColor: Colors.black54,
-                      onChanged: (value){
-
-                      },
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Enter Location  ',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 6.0),
-              child: Material(
-                color: Colors.blueGrey,
-                borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                elevation: 5.0,
-                child: TextButton(
-                  onPressed: (){
-                    // Navigator.pushNamed(context, LoadingScreen.id);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => LoadingScreen()));
-
-                  },
-
-                  child: Text(
-                    'Current Location Weather ',
-                    style: TextStyle(color: Colors.white
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
+              padding: EdgeInsets.all(20.0),
               child: Material(
                 color: Colors.blueGrey,
                 borderRadius: BorderRadius.all(Radius.circular(30.0)),
@@ -104,15 +58,12 @@ class _ChatScreenState extends State<ChatScreen> {
                   // height: 42.0,
                   child: Text(
                     'Get Weather ',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white,
+                    fontSize: 20.0),
                   ),
                 ),
               ),
             ),
-
-           Container(
-             height: 120.0,
-           )
           ],
         ),
       ),
