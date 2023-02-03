@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:chatapp/screens/chat_screen.dart';
 import 'registration_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:chatapp/screens/forgot_screen.dart';
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
 
@@ -31,7 +31,6 @@ class _LoginScreenState extends State<LoginScreen> {
 }
 
 class wid extends StatefulWidget {
-  const wid({Key? key}) : super(key: key);
 
   @override
   State<wid> createState() => _widState();
@@ -47,7 +46,6 @@ class _widState extends State<wid> {
     final _auth = FirebaseAuth.instance;
     String? email;
     String? password;
-    bool showSpinner = true;
     return Padding(
 
       padding: const EdgeInsets.all(2),
@@ -115,6 +113,7 @@ class _widState extends State<wid> {
             ),
             TextButton(
               onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotScreen()));
                 //forgot password screen
               },
               child: Text(
@@ -143,11 +142,10 @@ class _widState extends State<wid> {
                       }
 
                       setState(() {
-                        showSpinner = false;
                       });
                     } catch (e) {
                       print(e);
-                    };
+                    }
                   }
               ),
             ),
