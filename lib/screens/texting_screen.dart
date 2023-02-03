@@ -119,7 +119,23 @@ class MessagesStream extends StatelessWidget {
             ),
           );
         }
-        List<MessageBubble> messageBubbles = [];
+        final messages = snapshot.data?.docs;
+
+        final List<Text> messageBubbles = [];
+        for (var message in messages!) {
+          final messageText = message.data();
+          final messageSender = message.data();
+
+          final messageBubble= Text('$messageText from $messageSender');
+          // final currentUser = loggedInUser.email;
+          // final messageBubble = MessageBubble(
+          //   sender: messageSender,
+          //   text: messageText,
+          //   isMe: currentUser == messageSender,
+          // );
+
+          messageBubbles.add(messageBubble);
+        }
         return Expanded(
           child: ListView(
             reverse: true,

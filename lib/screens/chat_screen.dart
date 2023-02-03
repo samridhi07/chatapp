@@ -1,5 +1,5 @@
-import 'package:chatapp/screens/login_screen.dart';
 import 'package:chatapp/screens/texting_screen.dart';
+import 'package:chatapp/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:chatapp/screens/clima/screens/loading_screen.dart';
 
@@ -23,14 +23,14 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
               icon: Icon(Icons.close),
               onPressed: () {
-               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
+               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> WelcomeScreen()));
               },),
         ],
-        title: Text('Check the weather',
-          style: TextStyle(
-            color: Colors.white,
-          ),),
-        backgroundColor: Colors.pink,
+        // title: Text('Check the weather',
+        //   style: TextStyle(
+        //     color: Colors.white,
+        //   ),),
+        backgroundColor: Colors.blue,
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -40,6 +40,7 @@ class _ChatScreenState extends State<ChatScreen> {
           children: <Widget>[
             Container(
               padding: EdgeInsets.all(50.0),
+              child: Image.asset('images/weather.gif'),
             ),
             Container(
               child: Expanded(
