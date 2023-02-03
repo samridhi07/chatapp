@@ -15,24 +15,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return
-      Scaffold(
+    return Scaffold(
         appBar: AppBar(
-          leading: null,
-          actions: <Widget>[
+          leading:
             IconButton(
                 icon: Icon(Icons.close),
                 onPressed: () {
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> WelcomeScreen()));
                 }),
-          ],
-          title: Text('Registration',
-            style: TextStyle(
-              color: Colors.black54,
-            ),),
-          backgroundColor: Colors.lightGreen,
+          // title: Text('Registration',
+          //   style: TextStyle(
+          //     color: Colors.white,
+          //   ),),
+          backgroundColor: Colors.black,
         ),
-        backgroundColor: Colors.black38,
+        backgroundColor: Colors.black,
         body : register() ,
       )
     ;
@@ -53,31 +50,31 @@ class _registerState extends State<register> {
 
   @override
   Widget build(BuildContext context) {
-    return
-
-      Scaffold(
-
+    return Scaffold(
+      backgroundColor: Colors.black,
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.0),
+          padding: EdgeInsets.all(20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
+             children: <Widget>[
               Container(
-                height: 200.0,
-                child: null,
+                child: Hero(tag:'register',
+                  child: SizedBox(
+                    child: Image.asset('images/register.gif'),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 48.0,
               ),
-
               Container(
                 child: Expanded(
                   child: Column(
                     children: <Widget>[
 
                       SizedBox(
-                        height: 10.0,
+                        height: 20.0,
                       ),
                       ////////////
                       TextField(
@@ -97,7 +94,7 @@ class _registerState extends State<register> {
                         ),
                       ),
                       SizedBox(
-                        height: 10.0,
+                        height: 20.0,
                       ),
                       //////////////////////
                       TextField(
@@ -130,7 +127,7 @@ class _registerState extends State<register> {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10.0),
                 child: Material(
-                  color: Colors.lightGreen,
+                  color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(30.0)),
                   elevation: 5.0,
                   child: MaterialButton(
@@ -153,7 +150,8 @@ class _registerState extends State<register> {
                     child:
                     Text(
                       'Register',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.black,
+                      fontFamily: 'Unbounded'),
                     ),
                   ),
                 ),
